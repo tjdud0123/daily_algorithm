@@ -1,4 +1,4 @@
-# 택시비 적게내기 - 미완성
+# 택시비 적게내기 - 미완성 : 확인 필요
 
 from collections import deque
 
@@ -14,12 +14,14 @@ def solution(board):
     UP, DOWN, RIGHT, LEFT = 0, 1, 2, 3
     DELTAS = [(-1, 0, LEFT), (1, 0, RIGHT), (0, 1, DOWN), (0, -1, UP)]
     que = deque([])
+    confirm = set()
 
     if board[1][0] == 0:  # 아래
         que.append((0, 1, DOWN, 100))
+        confirm.add((0, 1, DOWN, 100))
     if board[0][1] == 0:  # 오른쪽
         que.append((1, 0, RIGHT, 100))
-    board[0][0], board[1][0], board[0][1] = 1, 1, 1
+        confirm.add((1, 0, RIGHT, 100))
     cand = []
     while que:
         cur = que.popleft()
@@ -33,9 +35,9 @@ def solution(board):
             else:
                 next_p = (cur[X] + dx, cur[Y] + dy, d, cur[SUM] + 500)
             print('>>', next_p)
-            if visitable(N, next_p[X], next_p[Y], board) and board[next_p[Y]][next_p[X]] != 1:
+            if visitable(N, next_p[X], next_p[Y], board) and next_p not in confirm:
                 que.append(next_p)
-                board[next_p[Y]][next_p[X]] = 1
+                confirm.add(next_p)
             print(que)
 
-    return cand
+    return max(cand)
