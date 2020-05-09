@@ -40,4 +40,4 @@ def solution(board):
                 confirm.add(next_p)
             print(que)
 
-    return max(cand)
+    return min(cand)
