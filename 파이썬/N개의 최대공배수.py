@@ -5,7 +5,6 @@ from fractions import gcd
 
 
 def solution(arr):
-    # arr.sort()
     while len(arr) > 1:
         n, m = arr.pop(), arr.pop()
         arr.append(n*m // gcd(n, m))
