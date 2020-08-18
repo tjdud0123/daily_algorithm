@@ -1,4 +1,4 @@
-# 어피치 쇼핑습관 - 정확성 O 효율성 10/15
+# 어피치 쇼핑습관 - 정확성 100 효율성 10/15
 
 from collections import deque, defaultdict
 
