@@ -5,6 +5,7 @@ def solution(gems):
     cur_shop = {gems[0]: 1}
     cand = []
     l_idx, r_idx = 0, 0
+    DIST, RESULT = 0, 1
 
     while l_idx < GEM_NUM and r_idx < GEM_NUM:
         if len(cur_shop) < TYPE_NUM:
@@ -19,6 +20,6 @@ def solution(gems):
                 del cur_shop[gems[l_idx]]
             l_idx += 1
 
-    cand = sorted(cand, key=lambda x: (x[0], x[1]))
+    cand = sorted(cand, key=lambda x: (x[DIST], x[RESULT]))
 
-    return cand[0][1]
+    return cand[0][RESULT]
