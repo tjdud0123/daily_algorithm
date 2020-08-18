@@ -38,3 +38,29 @@ def solution(gems):
 
 # solution(["A", "B", "A", "A", "B","B", "A", "A", "B","A", "A", "B","B","C","D","E","B","A","A","B","A", "A", "B","B","C", ]	)
 # [14, 18]
+
+
+def solution(gems):
+    UNIQUE_GEM = set(gems)
+    TYPE_NUM = len(UNIQUE_GEM)
+    GEM_NUM = len(gems)
+    cur_shop = { gem : 0 for gem in UNIQUE_GEM }
+    cand = []
+    l_idx, r_idx = 0, 0
+    
+    cur_shop[gems[0]] += 1 
+    while l_idx < GEM_NUM and r_idx < GEM_NUM:
+        if 0 in cur_shop.values():
+            r_idx += 1
+            if r_idx == GEM_NUM:
+                break;
+            cur_shop[gems[r_idx]] += 1
+        else:
+            cand.append((r_idx-l_idx, [l_idx+1, r_idx+1]))
+            cur_shop[gems[l_idx]] -= 1
+            l_idx += 1
+
+    cand = sorted(cand, key = lambda x: (x[0], x[1]))
+
+    return cand[0][1]
+            
