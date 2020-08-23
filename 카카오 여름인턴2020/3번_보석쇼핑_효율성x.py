@@ -50,7 +50,7 @@ def solution(gems):
     
     cur_shop[gems[0]] += 1 
     while l_idx < GEM_NUM and r_idx < GEM_NUM:
-        if 0 in cur_shop.values():
+        if 0 in cur_shop.values(): # 이 부분이 오래걸림
             r_idx += 1
             if r_idx == GEM_NUM:
                 break;

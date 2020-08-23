@@ -1,4 +1,4 @@
-# 택시비 적게내기 - 미완성 : 확인 필요
+# 택시비 적게내기 --> 가격까지 확인셋에넣어서 무한루프를 돌았음
 
 from collections import deque
 
@@ -25,7 +25,6 @@ def solution(board):
     cand = []
     while que:
         cur = que.popleft()
-        print(cur)
         if cur[X] == N-1 and cur[Y] == N-1:
             cand.append(cur[SUM])
 
@@ -34,10 +33,9 @@ def solution(board):
                 next_p = (cur[X] + dx, cur[Y] + dy, d, cur[SUM] + 100)
             else:
                 next_p = (cur[X] + dx, cur[Y] + dy, d, cur[SUM] + 500)
-            print('>>', next_p)
+
             if visitable(N, next_p[X], next_p[Y], board) and next_p not in confirm:
                 que.append(next_p)
                 confirm.add(next_p)
-            print(que)
 
     return min(cand)
