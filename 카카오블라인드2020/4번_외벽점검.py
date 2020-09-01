@@ -33,9 +33,10 @@ def solution(n, weak, dist):
     W, F = len(weak), len(dist)
     repair_lst = [()]  # 현재까지 고칠 수 있는 취약점들 저장 (1,2,3)
     count = 0  # 투입친구 수
+    dist.sort(reverse=True)  # 움직일 수 있는 거리가 큰 친구 순서대로
 
     # 고칠 수 있는 것들 리스트 작성
-    for can_move in dist[::-1]:  # 움직일 수 있는 거리가 큰 친구 순서대로
+    for can_move in dist:
         repairs = []  # 친구 별 고칠 수 있는 취약점들 저장
         count += 1
 
