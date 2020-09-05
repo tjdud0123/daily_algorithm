@@ -1,13 +1,17 @@
-# 이분탐색
+# 이분탐색 - 최대값
+def is_poss(middle, budgets, M):
+    return M >= sum([min(middle, budget) for budget in budgets])
+
+
 def solution(budgets, M):
     left, right = 1, max(budgets)
     while left < right:
         middle = (left + right + 1) // 2
-        if sum(min(middle, budget) for budget in budgets) <= M:
+        if is_poss(middle, budgets, M):
             left = middle
         else:
             right = middle - 1
-    return left
+    return right
 
 
 # 정렬
