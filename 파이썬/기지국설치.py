@@ -1,19 +1,17 @@
+import math
+
+
 def solution(n, stations, w):
-    arrived = [True] + [False] * n
-    count = 0
-
+    COVER = 2*w + 1
+    left = 1
+    dists = []
     for s in stations:
-        left, right = max(1, s-w), min(s+w, n)
-        for i in range(left, right+1):
-            arrived[i] = True
+        cover_l, cover_r = max(1, s-w), min(s+w, n)
 
-    for i in range(n+1):
-        if arrived[i]:
-            continue
-        s = min(n, i+w)
-        left, right = max(1, s-w), min(s+w, n)
-        for i in range(left, right+1):
-            arrived[i] = True
-        count += 1
+        dists.append(cover_l-left)
+        left = cover_r+1
 
-    return count
+    if left <= n:
+        dists.append(n+1-left)
+
+    return sum(map(lambda x: math.ceil(x / COVER), dists))
