@@ -1,8 +1,10 @@
 # daily_algorithm
 
-### 💡 데일리_알고리즘_풀이
+### 💡 데일리_알고리즘_풀이 - python / javascript
 프로그래머스 코딩 테스트 연습 문제 <br>
 https://programmers.co.kr/learn/challenges
+
+![image](https://user-images.githubusercontent.com/22907830/95557962-7d40eb00-0a50-11eb-824c-da2b58fedd3c.png)
 
 #### 👀 참고 
 [블로그 정리](https://velog.io/@tjdud0123?tag=%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4)
