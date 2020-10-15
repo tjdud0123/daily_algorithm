@@ -1,8 +1,6 @@
 lst = [3, 57, 2, 5, 75, 24, 25, 36, 475, 24, 8, 13, 1, 6, 3]
 
 # 버블 정렬
-
-
 def bubbleSort(lst):
     LEN = len(lst)
     for last_idx in range(LEN-2, 0, -1):  # 각 턴의 마지막 인덱스
@@ -15,9 +13,8 @@ def bubbleSort(lst):
             return lst
     return lst
 
+
 # 선택 정렬
-
-
 def selectSort(lst):
     LEN = len(lst)
     for cur_idx in range(0, LEN-1):  # 최소값을 위치시킬 인덱스
@@ -35,16 +32,14 @@ def insertSort(lst):
     for search_start in range(1, LEN):  # 탐색 시작 인덱스
         while search_start > 0:
             if lst[search_start] < lst[search_start-1]:
-                lst[search_start], lst[search_start - 1] \
-                    = lst[search_start-1], lst[search_start]
+                lst[search_start], lst[search_start - 1] = lst[search_start-1], lst[search_start]
                 search_start -= 1
             else:
                 break
     return lst
 
+
 # 퀵 정렬
-
-
 def quickSort(lst):
     LEN = len(lst)
     if LEN <= 1:
@@ -56,9 +51,8 @@ def quickSort(lst):
     right = [num for num in rest if num > pivot]
     return quickSort(left) + [pivot] + quickSort(right)
 
+
 # 병합 정렬
-
-
 def merge(left, right):
     merged = []
     while left or right:
@@ -89,4 +83,4 @@ def mergeSort(lst):
     return merge(left, right)
 
 
-print(mergeSort(lst))
+# print(mergeSort(lst))
