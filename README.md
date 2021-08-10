@@ -1,6 +1,6 @@
 # daily_algorithm
 
-### 💡 데일리_알고리즘_풀이 - python / javascript
+### 💡 데일리_알고리즘_풀이 - python / javascript 💡
 프로그래머스 코딩 테스트 연습 문제 <br>
 https://programmers.co.kr/learn/challenges
 
