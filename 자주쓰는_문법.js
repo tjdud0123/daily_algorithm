@@ -126,6 +126,8 @@ for (const p of participant){
     table[p] = (table[p] || 0) + 1
 }
 
+let forRange = [...Array(5).keys()].map(x => x + 1)
+// [ 1, 2, 3, 4, 5 ]
 //--------------------------------------------//
 
 /* stack & que
@@ -161,6 +163,8 @@ const countedNames = names.reduce((allNames, name) => {
     return allNames;
 }, {});
 
+// forEach로: names.forEach(val => count[val] = (count[val] || 0) + 1);
+
 console.log(countedNames)
 // { Alice: 2, Bob: 1, Tiff: 1, Bruce: 1 }
 //--------------------------------------------//
@@ -186,6 +190,10 @@ console.log(Object.keys(obj)); // ["a", "b", "c"]
 console.log(Object.getOwnPropertyNames(obj)); // ["a", "b", "c"]
 
 console.log(obj.hasOwnProperty('a')); // true
+
+// 배열 확인은 includes
+// arr.includes('a');
+
 //--------------------------------------------//
 
 /* set
@@ -216,6 +224,9 @@ console.log(elements.join(''));
 const myString = 'Hello 1 word. Sentence number 2.';
 console.log(myString.split(' '));
 // [ 'Hello', '1', 'word.', 'Sentence', 'number', '2.' ]
+const myString2 = 'Hello';
+console.log([...myString2]);
+// [ 'H', 'e', 'l', 'l', 'o' ]
 
 // separator가 포획 괄호 ()를 포함하는 정규표현식일 경우, 포획된 결과도 배열에 포함됩니다.
 const splitsWithSep = myString.split(/(\d)/);
@@ -261,3 +272,24 @@ console.log(numArr.some((element) => element % 2 === 0));
 console.log(numArr.every((element) => element < 4));
 // expected output: false
 //--------------------------------------------//
+
+/* regEx
+ */
+const re = /(\w+)\s(\w+)/;
+const reStr = "John Smith";
+const newStr = reStr.replace(re, "$2, $1");
+console.log(newStr); // "Smith, John"
+
+//--------------------------------------------//
+
+/* Time And Date
+ * timestamp로 변환
+ * 년 / 월 / 일 구하기
+ */
+
+const curTstmp = new Date().getTime();
+
+const createdDateObj = new Date(curTstmp);
+const year = createdDateObj.getFullYear();
+const month = createdDateObj.getMonth() + 1;
+const day = createdDateObj.getDate();
