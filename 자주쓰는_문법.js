@@ -10,6 +10,12 @@ for (const element of array1) {
     console.log(element);
 }
 // expected output: "a", "b", "c"
+
+const s = 'abcd'
+for (const char of s) {
+    console.log(char);
+}
+// expected output: "a" "b" "c" "d"
 //--------------------------------------------//
 
 /* for ... in
