@@ -8,6 +8,15 @@ function gcdlcm(a, b) {
     return gcd
 }
 
+// 유클리드 호제법
+function getGcd(a, b) {
+    if (a % b == 0) {
+        return b;
+    } else {
+        return getGcd(b, a % b);
+    }
+}
+
 function solution(w, h) {
     const COMMON = gcdlcm(w, h);
     const W = parseInt(w / COMMON), H = parseInt(h / COMMON);
