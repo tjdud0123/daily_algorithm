@@ -299,3 +299,58 @@ const createdDateObj = new Date(curTstmp);
 const year = createdDateObj.getFullYear();
 const month = createdDateObj.getMonth() + 1;
 const day = createdDateObj.getDate();
+
+
+/* 이분탐색
+ * 정렬된 데이터에서 타겟 인덱스 찾기
+ * 조건에서 가능한 최솟값 찾기
+ * 조건에서 가능한 최대값 찾기
+ */
+const getTargetIdx = (target, data) => {
+    data.sort((a, b) => a - b);
+    let start = 0, end = data.length - 1;
+    while (start <= end) {
+        const mid = parseInt((start + end) / 2);
+        if (target === data[mid]) {
+            return mid;
+        } else if (target < data[mid]) {
+            end = mid - 1;
+        } else {
+            start = mid + 1;
+        }
+    }
+    return -1;
+}
+
+const times = [7, 10]
+const getIsImpossible = (n, mid, times) => { 
+    return times.reduce((acc, cur) => acc + parseInt(mid / cur), 0) < n;
+}
+const getPossMin = (n, times) => { 
+    let start = 1, end = Math.max(...times)*n
+    while (start < end) {
+        const mid = parseInt((start + end) / 2);
+        if (getIsImpossible(n, mid, times)) {
+            start = mid + 1;
+        } else {
+            end = mid;
+        }
+    }
+    return start;
+}
+
+const getPossMax = (stones, k) {
+    let start = 1; // Math.min(...stones)
+    let end = 200000000; // Math.max(...stones)
+    while (start < end) {
+        const mid = parseInt((start + end + 1) / 2); // 나눗셈
+        if (getIsPossible(mid, stones, k)) {
+            start = mid;
+        } else {
+            end = mid - 1;
+        }
+    }
+    return end;
+}
+
+//--------------------------------------------//
