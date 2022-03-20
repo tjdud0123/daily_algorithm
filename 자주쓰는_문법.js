@@ -279,14 +279,6 @@ console.log(numArr.every((element) => element < 4));
 // expected output: false
 //--------------------------------------------//
 
-/* regEx
- */
-const re = /(\w+)\s(\w+)/;
-const reStr = "John Smith";
-const newStr = reStr.replace(re, "$2, $1");
-console.log(newStr); // "Smith, John"
-
-//--------------------------------------------//
 
 /* Time And Date
  * timestamp로 변환
@@ -339,7 +331,7 @@ const getPossMin = (n, times) => {
     return start;
 }
 
-const getPossMax = (stones, k) {
+const getPossMax = (stones, k) => {
     let start = 1; // Math.min(...stones)
     let end = 200000000; // Math.max(...stones)
     while (start < end) {
@@ -352,5 +344,48 @@ const getPossMax = (stones, k) {
     }
     return end;
 }
+
+//--------------------------------------------//
+
+/* 정규표현식 - 속도는 느린편
+ * 검색 / 대체 / 추출
+ * /패턴/플래그 형태
+ */
+
+const re = /(\w+)\s(\w+)/;
+const reStr = "John Smith";
+const newStr = reStr.replace(re, "$2, $1");
+console.log(newStr); // "Smith, John"
+
+const numRegEx = /\d{3}-\d{3,4}-\d{4}/g
+const numRegExCapture = /(\d{3})-(\d{3,4})-(\d{4})/g
+const str1 = '전화번호는 010-9015-2533, 010-1234-5678 입니다'
+const str2 = '전화번호 엄서영'
+/* test - boolean 값 반환 */
+console.log(numRegEx.test(str1)) // true
+console.log(numRegEx.test(str2)) // false
+/* exec - 추출한 1개만 반환 */
+console.log(numRegEx.exec(str1)) // ['010-9015-2533', ...]
+console.log(numRegEx.exec(str2)) // null
+/* matchAll, match - 모두 반환, g와 함께 사용 */
+console.log(str1.match(numRegEx)) // ['010-9015-2533', '010-1234-5678'
+console.log(str2.match(numRegEx)) // null
+console.log(str1.match(numRegExCapture)) // null
+console.log(str1.matchAll(numRegEx))// [['010-9015-2533', ...], ['010-1234-5678',...]]
+/* search - 인덱스 반환 */
+console.log(str1.search(numRegEx)) // 6
+/* 캡쳐 */
+console.log(str1.matchAll(numRegExCapture)) // [[ '010-9015-2533', '010', '9015', '2533', index: 6, ], [...]]
+
+const mailRegEx = /(.+)@(.+)\..+/
+const myMail = 'tjdud0123@naver.com'
+console.log([...myMail.match(mailRegEx)]) // [ 'tjdud0123@naver.com', 'tjdud0123', 'naver' ]
+
+const beforeCompress = 'AAAAAABBBDFFFFFFFKK' // 비손실 압축 예제
+const compressRegExp = /(.)\1*/g
+const compressed = beforeCompress
+    .match(compressRegExp)
+    .reduce((acc, cur) => acc + `${cur.length}${cur.slice(-1)}`, "")
+console.log(compressed) // 6A3B1D7F2K
 
 //--------------------------------------------//
