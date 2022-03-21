@@ -521,3 +521,79 @@ const check = (variable) => {
   check(5); // 5
 
 //--------------------------------------------//
+
+/* 예제
+ * 2중 object dictionary 초기화
+ * 2개 기준 정렬
+ * 함수형 프로그래밍
+ */
+
+let genreTable = {};
+    genres.forEach((genre, idx) => {
+        let data = genreTable[genre] || { total: 0, songs: [] }
+        data.total = data.total + plays[idx]
+        data.songs = [...data.songs, idx]
+        genreTable[genre] = data
+    })
+    
+    const sortedTable = Object.entries(genreTable).sort(([, a], [, b]) => b.total - a.total)
+    const songs = sortedTable
+        .map(([_, v]) => v.songs)
+        .map((songs) => songs.sort((a, b) => plays[b] - plays[a] || a - b)) // 이중 정렬
+
+//--------------------------------------------//
+
+/* 힙
+ * MaxHeap 구현
+ */
+
+class MaxHeap {
+    constructor() {
+        this.heap = [null];
+    }
+
+    push(value) {
+        this.heap.push(value);
+        let currentIndex = this.heap.length - 1;
+        let parentIndex = Math.floor(currentIndex / 2);
+
+        while (parentIndex !== 0 && this.heap[parentIndex] < value) {
+            const temp = this.heap[parentIndex];
+            this.heap[parentIndex] = value;
+            this.heap[currentIndex] = temp;
+
+            currentIndex = parentIndex;
+            parentIndex = Math.floor(currentIndex / 2);
+        }
+    }
+
+    pop() {
+        if (this.heap.length === 2) return this.heap.pop(); // 루트 정점만 남은 경우
+
+        const returnValue = this.heap[1];
+        this.heap[1] = this.heap.pop();
+
+        let currentIndex  = 1;
+        let leftIndex = 2;
+        let rightIndex = 3;
+        while (this.heap[currentIndex] < this.heap[leftIndex] || 
+                this.heap[currentIndex] < this.heap[rightIndex]) {
+            if (this.heap[leftIndex] < this.heap[rightIndex]) {
+                const temp = this.heap[currentIndex];
+                this.heap[currentIndex] = this.heap[rightIndex];
+                this.heap[rightIndex] = temp;
+                currentIndex = rightIndex;
+            } else {
+                const temp = this.heap[currentIndex];
+                this.heap[currentIndex] = this.heap[leftIndex];
+                this.heap[leftIndex] = temp;
+                currentIndex = leftIndex;
+            }
+            leftIndex = currentIndex * 2;
+            rightIndex = currentIndex * 2 + 1;
+        }
+
+        return returnValue;
+    }
+}
+//--------------------------------------------//
