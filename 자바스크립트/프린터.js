@@ -15,3 +15,28 @@ function solution(priorities, location) {
 
     return que;
 }
+
+function solution2(priorities, location) {
+    let cnt = 0;
+    let que = priorities.map((prior, index) => [index, prior])
+    let priorNum = priorities.sort((a, b) => a - b)
+    
+    while (que.length > 0) {
+        const [curLocation, curPrior] = que.shift();
+        
+        if (curPrior !== priorNum[priorNum.length-1]) {
+            que.push([curLocation, curPrior])
+            continue
+        }
+        
+        if (curPrior === priorNum[priorNum.length-1]) {
+            priorNum.pop()
+            cnt++
+        }
+        
+        if (curLocation === location) {
+            return cnt
+        }
+    }
+
+}
