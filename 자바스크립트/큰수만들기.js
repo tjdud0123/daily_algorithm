@@ -13,3 +13,20 @@ function solution(number, k) {
 
     return stack.slice(0, stack.length - k).join('')
 }
+
+function solution2(number, k) {
+    var answer = '';
+    let stack = [];
+    for (const num of number) {
+        if (stack.length === 0) {
+            stack.push(num)
+            continue
+        }
+        while (stack.length !== 0 && stack[stack.length-1] < num && k > 0) {
+            stack.pop()
+            k--
+        }
+        stack.push(num)
+    }
+    return k === 0 ? stack.join('') : stack.slice(0, -k).join('');
+}
